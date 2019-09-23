@@ -50,3 +50,14 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+st/st
+dwm/dwm
+dmenu/dmenu
+grabc/grabc
+stest
+
+*.o
+*.diff
+*.orig
+*.png
