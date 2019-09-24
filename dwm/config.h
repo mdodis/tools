@@ -98,8 +98,8 @@ static const char *homepagecmd[]= { "firefox", NULL };
 
 /* volume control */
 #include <X11/XF86keysym.h>
-static const char *upvol[]   = { "pamixer", "-i", "5", NULL };
-static const char *downvol[] = { "pamixer", "-d", "5", NULL };
+static const char *upvol[]   = {  "/home/miked/scripts/audio_up", NULL };
+static const char *downvol[] = { "/home/miked/scripts/audio_down", NULL };
 static const char *cmuplay[] = { "cmus-remote", "-u", NULL };
 static const char *cmunext[] = { "cmus-remote", "-n", NULL };
 static const char *cmuprev[] = { "cmus-remote", "-r", NULL };
