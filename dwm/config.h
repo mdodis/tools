@@ -98,15 +98,23 @@ static const char *homepagecmd[]= { "firefox", NULL };
 
 /* volume control */
 #include <X11/XF86keysym.h>
-static const char *upvol[]   = {  "/home/miked/scripts/audio_up", NULL };
-static const char *downvol[] = { "/home/miked/scripts/audio_down", NULL };
+
+#ifndef DWM_USER_SCRIPT_DIRECTORY
+#error "DWM_USER_SCRIPT_DIRECTORY"
+#endif
+
+#define _STR(x) #x
+#define STR(x) _STR(x)
+
+static const char *upvol[]   = { STR(DWM_USER_SCRIPT_DIRECTORY) "audio-control", "u", NULL };
+static const char *downvol[] = { STR(DWM_USER_SCRIPT_DIRECTORY) "audio-control", "d", NULL };
 static const char *cmuplay[] = { "cmus-remote", "-u", NULL };
 static const char *cmunext[] = { "cmus-remote", "-n", NULL };
 static const char *cmuprev[] = { "cmus-remote", "-r", NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute", "0", "toggle", NULL };
-static const char *backinc[] = {"xbacklight", "-inc", "5", NULL};
-static const char *backdec[] = {"xbacklight", "-dec", "5", NULL};
-static const char *printsc[] = {"/home/miked/scripts/dscreen", NULL};
+static const char *backinc[] = { STR(DWM_USER_SCRIPT_DIRECTORY) "/brightness-control", "u", NULL};
+static const char *backdec[] = { STR(DWM_USER_SCRIPT_DIRECTORY) "/brightness-control", "d", NULL};
+static const char *printsc[] = { STR(DWM_USER_SCRIPT_DIRECTORY) "/dscreen", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
