@@ -3,6 +3,7 @@
 #include <X11/Xlib.h>
 #include <X11/X.h>
 #include <X11/Xutil.h>
+#include <X11/extensions/Xrandr.h>
 
 #include <cairo.h>
 #include <unistd.h>
@@ -25,19 +26,20 @@ const char* STAT_ICON_NONE = 0;
 float STAT_MIN = 0.f;
 float STAT_MAX = 100.f;
 
-#define MIKED_OW 200
-#define MIKED_OH 200
+#define PXSCALE 175
+#define MIKED_OW PXSCALE
+#define MIKED_OH PXSCALE
+#define BAR_HEIGHT 10
 
-constexpr int WIND_X = (1366 / 2) - (MIKED_OW / 2);
-constexpr int WIND_Y = 768 / 2 - MIKED_OH;
-constexpr int WIND_W = MIKED_OW;
-constexpr int WIND_H = MIKED_OH;
+#define global static
+
+global int WIND_X;
+global int WIND_Y;
+
+int WIND_W = MIKED_OW;
+//int WIND_H = MIKED_OH + BAR_HEIGHT;
+int WIND_H = MIKED_OH;
 const float TIMEOUT = 950.f;
-
-struct NRGB
-{
-    float r, g, b;
-};
 
 NRGB BAR_COLOR = {};
 static cairo_surface_t* g_photo_full;
@@ -164,8 +166,6 @@ float get_percentage(const char* command, float min, float max)
     fclose(fp);
     
     float result = atof(buffer);
-    
-    
     return fmap((float)STAT_MIN, (float)STAT_MAX, 0.f, 1.f, result);
 }
 
@@ -175,6 +175,8 @@ void init(cairo_t* cr)
         g_photo_full = cairo_image_surface_create_from_png(STAT_ICON_FULL);
     if (STAT_ICON_NONE)
         g_photo_none = cairo_image_surface_create_from_png(STAT_ICON_NONE);
+    
+    BAR_COLOR = from_hex(COLOR_ACCENT_INTENSE);
 }
 
 struct FitRect
@@ -192,12 +194,14 @@ FitRect fit_surface_to_rectangle(cairo_surface_t* surf, double width, double hei
     yscale = cairo_image_surface_get_height(surf);
     
 #define MAX(x,y) x > y ? x : y
+#define MIN(x,y) x < y ? x : y
     
     double fitx, fity;
     double fitx_p, fity_p;
     fitx = fitx_p = xscale;
     fity = fity_p = yscale;
     
+    double diff = 0.f;
     if (width < xscale)
     {
         fitx_p = (xscale - (xscale - width));
@@ -218,8 +222,9 @@ FitRect fit_surface_to_rectangle(cairo_surface_t* surf, double width, double hei
         fity_p = (height);
         fity = fity_p / yscale;
     }
-    double max_p = MAX(fitx_p, fity_p);
-    result.scale = MAX(fitx, fity);
+    
+    double max_orig = MAX(xscale, yscale);
+    result.scale = MIN(fitx, fity);
     return result;
 }
 
@@ -242,16 +247,13 @@ void draw(cairo_t *cr, float t) {
     
     cairo_surface_t* img = g_photo_full;
     if (t <= 0.f && (g_photo_none))
-    {
         img = g_photo_none;
-    }
     
     if (img)
     {
-        
-        const double offset_pixels = 32;
+        const double offset_pixels = 50;
         FitRect fr = fit_surface_to_rectangle(img, WIND_W - offset_pixels, WIND_H - offset_pixels);
-        cairo_translate(cr,offset_pixels / 2, offset_pixels / 2);
+        cairo_translate(cr, offset_pixels / 2, offset_pixels / 2);
         cairo_scale(cr, fr.scale, fr.scale);
         
         cairo_set_source_surface(cr, img, 0, 0);
@@ -267,11 +269,11 @@ void draw(cairo_t *cr, float t) {
 
 int file_exists(char *filename)
 {
-    struct stat   buffer;   
+    struct stat   buffer;
     return (stat (filename, &buffer) == 0);
 }
 
-int main(int argc, char** argv) 
+int main(int argc, char** argv)
 {
     // open lock file exclusively to prevent other instances
     // from opening it
@@ -291,11 +293,23 @@ int main(int argc, char** argv)
     
     parse_options(argc, argv);
     
-    BAR_COLOR = {0.682, 0.215, 0.325};
-    
     Display *d = XOpenDisplay(NULL);
     Window root = DefaultRootWindow(d);
     int default_screen = XDefaultScreen(d);
+    
+    
+    XRRScreenResources* xrandr_screen;
+    XRRCrtcInfo *crtc_info;
+    
+    xrandr_screen = XRRGetScreenResources(d, root);
+    crtc_info = XRRGetCrtcInfo(d, xrandr_screen, xrandr_screen->crtcs[0]);
+    Screen *scrn = XScreenOfDisplay(d, default_screen);
+    
+    WIND_X = (crtc_info->width / 2) - (MIKED_OW / 2);
+    WIND_Y = crtc_info->height / 2 - MIKED_OH;
+    
+    WIND_X += crtc_info->x;
+    WIND_Y += crtc_info->y;
     
     // these two lines are really all you need
     XSetWindowAttributes attrs;
@@ -334,7 +348,6 @@ int main(int argc, char** argv)
     
     Timer tm;
     tm.reset();
-    
     using namespace std::chrono_literals;
     auto future = std::async(std::launch::async, get_percentage,STAT_CMD, STAT_MIN, STAT_MAX);
     while (1)
@@ -352,7 +365,7 @@ int main(int argc, char** argv)
         draw(cr, t);
         XFlush(d);
         
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        std::this_thread::sleep_for(std::chrono::milliseconds((int)20));
         
         if (file_exists(RESETFILE))
         {
@@ -361,7 +374,7 @@ int main(int argc, char** argv)
         }
         
         if (tm.get_elapsed_ms() >= TIMEOUT) break;
-        printf("%f\n", tm.get_elapsed_ms());
+        //printf("%f\n", tm.get_elapsed_ms());
     }
     
     cairo_destroy(cr);

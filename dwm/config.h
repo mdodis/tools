@@ -108,13 +108,14 @@ static const char *homepagecmd[]= { "firefox", NULL };
 
 static const char *upvol[]   = { STR(DWM_USER_SCRIPT_DIRECTORY) "audio-control", "u", NULL };
 static const char *downvol[] = { STR(DWM_USER_SCRIPT_DIRECTORY) "audio-control", "d", NULL };
+static const char *mutevol[] = { STR(DWM_USER_SCRIPT_DIRECTORY) "audio-control", "m", NULL };
+static const char *backinc[] = { STR(DWM_USER_SCRIPT_DIRECTORY) "brightness-control", "u", NULL};
+static const char *backdec[] = { STR(DWM_USER_SCRIPT_DIRECTORY) "brightness-control", "d", NULL};
+static const char *printsc[] = { STR(DWM_USER_SCRIPT_DIRECTORY) "dscreen", NULL};
+
 static const char *cmuplay[] = { "cmus-remote", "-u", NULL };
 static const char *cmunext[] = { "cmus-remote", "-n", NULL };
 static const char *cmuprev[] = { "cmus-remote", "-r", NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute", "0", "toggle", NULL };
-static const char *backinc[] = { STR(DWM_USER_SCRIPT_DIRECTORY) "/brightness-control", "u", NULL};
-static const char *backdec[] = { STR(DWM_USER_SCRIPT_DIRECTORY) "/brightness-control", "d", NULL};
-static const char *printsc[] = { STR(DWM_USER_SCRIPT_DIRECTORY) "/dscreen", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */

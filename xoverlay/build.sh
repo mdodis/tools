@@ -3,5 +3,5 @@ TIMEFORMAT=%R
 code="$PWD"
 opts=-g
 cd . > /dev/null
-time g++ $opts $code/xoverlay.cpp -o xoverlay -lX11 -lXfixes -lXcomposite -lcairo -I /usr/include/cairo -lpthread
+time g++ $opts $code/xoverlay.cpp -o xoverlay -lX11 -lXfixes -lXcomposite -lcairo -I /usr/include/cairo -lpthread -lXrandr
 cd $code > /dev/null
