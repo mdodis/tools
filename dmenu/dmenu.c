@@ -785,16 +785,17 @@ setup(void)
 		mw = wa.width;
 	}
 
+#if 1
 	/*
 	@note: edit by miked
 	*/
-	#define MD_WDTH 700
-	#define MD_YOFF 15
+	#define MD_WDTH 800
+	#define MD_YOFF 16
 	x += mw/2-MD_WDTH/2;
 	mw = MD_WDTH;
 
 	y += MD_YOFF;
-
+#endif
 	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
 	inputw = MIN(inputw, mw/3);
 	match();

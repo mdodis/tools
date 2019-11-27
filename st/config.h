@@ -109,9 +109,9 @@ static const char *colorname[] = {
   [15] = "#ffffff", /* white   */
 
   /* special colors */
-  [256] = "#040404", /* background */
+  [256] = "#030303", /* background */
   [257] = "#c5c8c6", /* foreground */
-  [258] = COLOR_ACCENT_INTENSE
+  [258] = COLOR_ACCENT
 };
 
 

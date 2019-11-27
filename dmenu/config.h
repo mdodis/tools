@@ -9,7 +9,7 @@ static const char *fonts[] = {
 	"Liberation Sans:size=9"
 };
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
-#define BG "#404040"
+#define BG COLOR_BACKGROUND
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
 	[SchemeNorm] = { "#eeeeee", BG},

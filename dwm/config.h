@@ -1,8 +1,8 @@
 #include "../colors.h"
 /* See LICENSE file for copyright and license details. */
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 10;        /* gaps between windows */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int gappx     = 8;        /* gaps between windows */
 static const unsigned int snap      = 16;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -19,8 +19,8 @@ static const char col_gray4[]       = "#eeeeee";
 static const char col_accent[]      = COLOR_ACCENT;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_accent,col_accent },
+	[SchemeNorm] = { col_gray3, COLOR_BACKGROUND, col_gray2 },
+	[SchemeSel]  = { col_gray4, COLOR_ACCENT, COLOR_ACCENT },
 };
 
 /* tagging */
@@ -88,7 +88,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]   = { "j4-dmenu-desktop","--dmenu=dmenu -i -l 30","--term=st", NULL };
+static const char *dmenucmd[]   = { "j4-dmenu-desktop","--dmenu=dmenu -i -p Run","--term=st", NULL };
 static const char *termcmd[]    = { "st", NULL };
 static const char *lockcmd[]    = { "/home/miked/scripts/dlock", ">" , "/home/miked/fuck.txt",NULL };
 static const char *muttcmd[]    = { "thunderbird", NULL };
