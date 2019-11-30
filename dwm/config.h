@@ -27,14 +27,15 @@ static const char *colors[][3]      = {
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const Rule rules[] = {
 	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
+  *	WM_CLASS(STRING) = instance, class
+  *	WM_NAME(STRING) = title
      *
      *WM_CLASS(STRING) = "qbittorrent", "qBittorrent"
 WM_CLASS(STRING) = "google-chrome", "Google-chrome"
-	 */
+  */
 
 	/* class            instance                title                   tags mask       isfloating   monitor */
+	{"mpv",             NULL,                   NULL,                   0,              1,           -1 },
 	{"Gimp",            NULL,                   NULL,                   0,              1,           -1 },
 	{"Google-chrome",   NULL,                   NULL,                   1 << 8,         0,           -1 },
 	{"Firefox",         NULL,                   NULL,                   1 << 8,         0,           -1 },
@@ -71,17 +72,17 @@ static const Layout layouts[] = {
 	{ "[T]",      tile },    /* first entry is default */
 	{ "[F]",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ "|M|",      centeredmaster },
-	{ "<F>",      centeredfloatingmaster },
+	/*{ "|M|",      centeredmaster },*/
+	/*{ "<F>",      centeredfloatingmaster },*/
 };
 
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -154,8 +155,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,                       setlayout,          {.v = &layouts[0]} }, // tile
 	{ MODKEY,                       XK_f,                       setlayout,          {.v = &layouts[1]} }, // floating
 	{ MODKEY,                       XK_m,                       setlayout,          {.v = &layouts[2]} }, // monocle
-	{ MODKEY,                       XK_u,                       setlayout,          {.v = &layouts[3]} }, // centered master
-	{ MODKEY,                       XK_o,                       setlayout,          {.v = &layouts[4]} }, // floating centered master
+	/*{ MODKEY,                       XK_u,                       setlayout,          {.v = &layouts[3]} }, // centered master*/
+	/*{ MODKEY,                       XK_o,                       setlayout,          {.v = &layouts[4]} }, // floating centered master*/
 	//{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_f,                       togglefloating,     {0} },
 	{ MODKEY,                       XK_0,                       view,               {.ui = ~0 } },
@@ -168,14 +169,14 @@ static Key keys[] = {
 	{ MODKEY,                       XK_equal,                   setgaps,            {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,                   setgaps,            {.i = 0  } },
 	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+        TAGKEYS(                        XK_2,                      1)
+        TAGKEYS(                        XK_3,                      2)
+        TAGKEYS(                        XK_4,                      3)
+        TAGKEYS(                        XK_5,                      4)
+        TAGKEYS(                        XK_6,                      5)
+        TAGKEYS(                        XK_7,                      6)
+        TAGKEYS(                        XK_8,                      7)
+        TAGKEYS(                        XK_9,                      8)
 	{ MODKEY,                       XK_Escape,                  quit,               {0} },
 };
 

@@ -1563,21 +1563,6 @@ xstartdraw(void)
 	return IS_SET(MODE_VISIBLE);
 }
 
-
-int
-is_url_start(Line l, int x2)
-{
-    /* starts with https */
-    int x;
-    const char *c = "https";
-    for (x = 0; x < x2 && (*c == l[x].u); x++){
-        
-        if (*c++ == 0) return 1;
-    }
-    if (*c == 0) return 1;
-    return 0;
-}
-
 void
 xdrawline(Line line, int x1, int y1, int x2)
 {
@@ -1588,14 +1573,6 @@ xdrawline(Line line, int x1, int y1, int x2)
 	numspecs = xmakeglyphfontspecs(specs, &line[x1], x2 - x1, x1, y1);
 	i = ox = 0;
 	for (x = x1; x < x2 && i < numspecs; x++) {
-		
-        /* NOTE: miked here! */
-        if (is_url_start(line + x, x2)){
-            int iter;
-            for (iter = x; iter < x2 && (iter < x + 4); iter++){
-                line[iter].fg = 0xFFFF0000;
-            }
-        }
         
         new = line[x];
 		if (new.mode == ATTR_WDUMMY)
