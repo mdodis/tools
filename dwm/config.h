@@ -1,7 +1,7 @@
 #include "../colors.h"
 /* See LICENSE file for copyright and license details. */
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 8;        /* gaps between windows */
 static const unsigned int snap      = 16;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -33,7 +33,7 @@ static const Rule rules[] = {
      *WM_CLASS(STRING) = "qbittorrent", "qBittorrent"
 WM_CLASS(STRING) = "google-chrome", "Google-chrome"
   */
-
+    
 	/* class            instance                title                   tags mask       isfloating   monitor */
 	{"mpv",             NULL,                   NULL,                   0,              1,           -1 },
 	{"Gimp",            NULL,                   NULL,                   0,              1,           -1 },
@@ -132,9 +132,9 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioMute,           spawn,              {.v = mutevol } },
 	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,              {.v = upvol   } },
 	{ ShiftMask,                    0xff61,                     spawn,              {.v = printsc   } },
-
+    
 	{ MODKEY,                       XK_e,                       spawn,              {.v= rangercmd} },
-
+    
 	{ MODKEY,                       XK_F4,                      spawn,              {.v= cmuscmd} },
 	{ MODKEY|ShiftMask,             XK_Escape,                  spawn,              {.v= lockcmd} },
 	{ Mod1Mask,                     XK_space,                   spawn,              {.v = dmenucmd } },
