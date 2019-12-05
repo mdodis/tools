@@ -56,7 +56,7 @@ dwm/dwm
 dmenu/dmenu
 grabc/grabc
 stest
-
+xoverlay/xoverlay
 *.o
 *.diff
 *.orig

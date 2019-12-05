@@ -15,7 +15,7 @@ typedef struct{
 /* Window width and height in pixels */
 const long WINDOW_DIM[2] = {175, 175};
 /* Progress bar height in pixels */
-const long BAR_HEIGHT = 12;
+const long BAR_HEIGHT = WINDOW_DIM[1];
 /* Progress bar offset
 Set BAR_HEIGHT to WINDOW_DIM[1] to have it
 take up the full part of the screen */
