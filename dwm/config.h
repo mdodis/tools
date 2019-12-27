@@ -40,7 +40,7 @@ static const Rule rules[] = {
      *WM_CLASS(STRING) = "qbittorrent", "qBittorrent"
 WM_CLASS(STRING) = "google-chrome", "Google-chrome"
   */
-    
+
 	/* class            instance                title                   tags mask       isfloating   monitor */
 	{"mpv",             NULL,                   NULL,                   0,              1,           -1 },
 	{"Gimp",            NULL,                   NULL,                   0,              1,           -1 },
@@ -96,7 +96,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]   = { "j4-dmenu-desktop","--dmenu=dmenu -i -p Run","--term=st", NULL };
+static const char *dmenucmd[]   = { "j4-dmenu-desktop","--dmenu=dmenu -i -p ▶","--term=st", NULL };
 static const char *termcmd[]    = { "st", NULL };
 static const char *lockcmd[]    = { "/home/miked/scripts/dlock", ">" , "/home/miked/fuck.txt",NULL };
 static const char *muttcmd[]    = { "thunderbird", NULL };
@@ -139,9 +139,9 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioMute,           spawn,              {.v = mutevol } },
 	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,              {.v = upvol   } },
 	{ ShiftMask,                    0xff61,                     spawn,              {.v = printsc   } },
-    
+
 	{ MODKEY,                       XK_e,                       spawn,              {.v= rangercmd} },
-    
+
 	{ MODKEY,                       XK_F4,                      spawn,              {.v= cmuscmd} },
 	{ MODKEY|ShiftMask,             XK_Escape,                  spawn,              {.v= lockcmd} },
 	{ Mod1Mask,                     XK_space,                   spawn,              {.v = dmenucmd } },
