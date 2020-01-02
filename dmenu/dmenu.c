@@ -790,7 +790,7 @@ setup(void)
 	@note: edit by miked
 	*/
 	#define MD_WDTH 800
-	#define MD_YOFF 16
+	#define MD_YOFF 15
 	x += mw/2-MD_WDTH/2;
 	mw = MD_WDTH;
 

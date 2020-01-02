@@ -10,14 +10,13 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Liberation Sans:size=9" };
-static const char dmenufont[]       = "Liberation Sans:size=9";
+static const char *fonts[]          = { "DejaVu Sans Book:size=8" };
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_accent[]      = COLOR_ACCENT;
-static const unsigned int baralpha = 0xd0;
+static const unsigned int baralpha = 0xf2;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */

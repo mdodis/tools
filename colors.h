@@ -18,8 +18,8 @@
 #define COLOR_ACCENT DWM_CYAN
 #define COLOR_ACCENT_INTENSE SOFT_RED_INTENSE
 
-#define COLOR_BACKGROUND "#1a1a1a"
-#define COLOR_BACKGROUND_LIGHT "#4f4f4f"
+#define COLOR_BACKGROUND "#0A0A0A"
+#define COLOR_BACKGROUND_LIGHT "#0f0f0f"
 typedef struct
 {
     float r, g, b;
