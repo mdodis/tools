@@ -9,10 +9,9 @@ static const char *fonts[] = {
 	"DejaVu Sans Book:size=8"
 };
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
-#define BG COLOR_BACKGROUND_LIGHT
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
-	[SchemeNorm] = { "#eeeeee", BG},
+	[SchemeNorm] = { "#eeeeee", COLOR_BGL},
 	[SchemeSel] = { "#eeeeee", COLOR_ACCENT},
 	[SchemeOut] = { "#000000", "#00ffff" },
 };

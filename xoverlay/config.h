@@ -34,4 +34,4 @@ inline static unsigned int hs2uint(char *str){
 
 #define HX2NRGBA(s)  double(hs2uint(s) >> 16 & 0xff) / 255.0, double(hs2uint(s) >> 8 & 0xff ) / 255.0, double(hs2uint(s) >> 0 & 0xff ) / 255.0, .95
 /* RGBA color (normalized) of the background */
-#define BACKDROP_COLOR HX2NRGBA(COLOR_BACKGROUND_LIGHT)
+#define BACKDROP_COLOR HX2NRGBA(COLOR_BGL)

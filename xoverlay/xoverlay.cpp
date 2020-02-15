@@ -277,11 +277,7 @@ bool is_reset_file_different() {
 }
 
 int main(int argc, char** argv) {
-    //
-    printf("%s\n", COLOR_BACKGROUND);
-    printf("%f %f %f %f\n", BACKDROP_COLOR);
 
-    printf("%06x\n", (hs2uint(COLOR_BACKGROUND) >> 0) & 0xff);
     // open lock file exclusively to prevent other instances
     // from opening it
     int fd = open(PIDFILE,  O_CREAT | O_RDWR, 0666);

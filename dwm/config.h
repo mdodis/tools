@@ -16,17 +16,40 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_accent[]      = COLOR_ACCENT;
-static const unsigned int baralpha = 0xf2;
+static const char col_cyan[]        = "#005577";
+static const char col_black[]       = "#000000";
+static const char col_red[]         = "#ff0000";
+static const char col_yellow[]      = "#ffff00";
+static const char col_white[]       = "#ffffff";
+static const unsigned int baralpha = 0xff;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, COLOR_BACKGROUND, col_gray2 },
-	[SchemeSel]  = { col_gray4, COLOR_ACCENT, COLOR_ACCENT },
+	[SchemeNorm] = { col_gray3, COLOR_BG, col_gray2 },
+	[SchemeSel]  = { col_gray4, COLOR_BGL, COLOR_ACCENT },
+	[SchemeWarn] =	 { col_black, col_yellow, col_red },
+	[SchemeUrgent]=	 { col_white, col_red,    col_red },
+    [SchemeCol1] = { col_gray1, COLOR_1, COLOR_7},
+    [SchemeCol2] = { col_gray1, COLOR_2, COLOR_7},
+    [SchemeCol3] = { col_gray1, COLOR_3, COLOR_7},
+    [SchemeCol4] = { col_gray1, COLOR_4, COLOR_7},
+    [SchemeCol5] = { col_gray1, COLOR_5, COLOR_7},
+    [SchemeCol6] = { col_gray1, COLOR_6, COLOR_7},
+    [SchemeCol7] = { col_gray1, COLOR_7, COLOR_7},
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeWarn] =	{ OPAQUE, baralpha, borderalpha },
+	[SchemeUrgent]=	{ OPAQUE, baralpha, borderalpha },
+    [SchemeCol1] = { OPAQUE, baralpha, borderalpha},
+    [SchemeCol2] = { OPAQUE, baralpha, borderalpha},
+    [SchemeCol3] = { OPAQUE, baralpha, borderalpha},
+    [SchemeCol4] = { OPAQUE, baralpha, borderalpha},
+    [SchemeCol5] = { OPAQUE, baralpha, borderalpha},
+    [SchemeCol6] = { OPAQUE, baralpha, borderalpha},
+    [SchemeCol7] = { OPAQUE, baralpha, borderalpha},
 };
 
 /* tagging */
@@ -44,7 +67,7 @@ WM_CLASS(STRING) = "google-chrome", "Google-chrome"
 	{"mpv",             NULL,                   NULL,                   0,              1,           -1 },
 	{"Gimp",            NULL,                   NULL,                   0,              1,           -1 },
 	{"Google-chrome",   NULL,                   NULL,                   1 << 8,         0,           -1 },
-	{"Firefox",         NULL,                   NULL,                   1 << 8,         0,           -1 },
+	{"firefox",         NULL,                   NULL,                   1 << 8,         0,           -1 },
 	{"discord",         NULL,                   NULL,                   1 << 4,         0,            1 },
 	{NULL,              "skype",                NULL,                   1 << 6,         0,            1 },
 	{NULL,              NULL,                  "ranger",                0,              1,           -1 },
