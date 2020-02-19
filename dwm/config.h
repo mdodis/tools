@@ -76,7 +76,7 @@ WM_CLASS(STRING) = "google-chrome", "Google-chrome"
 	{"Spotify",         "spotify",              "Spotify Free",         1 << 6,         0,           -1 },
 	{"GNU Octave",      "octave-gui",           "Octave",               1 << 5,         0,           -1 },
 	{"Steam",           "Steam",                NULL,                	1 << 3,         0,           -1 },
-	{NULL,              "qbittorrent",          NULL,                   1 << 4,         0,           -1 },
+	{NULL,              "qbittorrent",          NULL,                   1 << 7,         0,           -1 },
 	{NULL,              "pcmanfm",              NULL,                   0,              1,           -1 },
 	{NULL,              "thunar",               NULL,                   0,              1,           -1 },
 	{NULL,              "zathura",              NULL,                   0,              1,           -1 },

@@ -16,7 +16,7 @@
 
 #define SOLARIZED_ACCENT    "#b58900"
 #define SOLARIZED_BG        "#002b36"
-#define SOLARIZED_BGL       "#005266"
+#define SOLARIZED_BGL       "#00495b"
 
 #define COLOR_0 "#002b36" /* black   */
 #define COLOR_1 "#dc322f" /* red     */
