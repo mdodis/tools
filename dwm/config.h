@@ -101,8 +101,8 @@ static const Layout layouts[] = {
 	{ "[T]",      tile },    /* first entry is default */
 	{ "[F]",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	/*{ "|M|",      centeredmaster },*/
-	/*{ "<F>",      centeredfloatingmaster },*/
+	{ "[B]",      bstack },
+	{ "[H]",      bstackhoriz },
 };
 
 /* key definitions */
@@ -184,6 +184,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,                       setlayout,          {.v = &layouts[0]} }, // tile
 	{ MODKEY,                       XK_f,                       setlayout,          {.v = &layouts[1]} }, // floating
 	{ MODKEY,                       XK_m,                       setlayout,          {.v = &layouts[2]} }, // monocle
+	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
 	/*{ MODKEY,                       XK_u,                       setlayout,          {.v = &layouts[3]} }, // centered master*/
 	/*{ MODKEY,                       XK_o,                       setlayout,          {.v = &layouts[4]} }, // floating centered master*/
 	//{ MODKEY,                       XK_space,  setlayout,      {0} },
