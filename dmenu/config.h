@@ -11,7 +11,8 @@ static const char *fonts[] = {
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
-	[SchemeNorm] = { "#eeeeee", COLOR_BGL},
+	[SchemeNorm] = { "#eeeeee", COLOR_BG},
+	[SchemeNormAlt] = { "#eeeeee", "#073642"},
 	[SchemeSel] = { "#eeeeee", COLOR_ACCENT},
 	[SchemeOut] = { "#000000", "#00ffff" },
 };
@@ -23,3 +24,4 @@ static unsigned int lines      = 0;
  * for example: " /?\"&[]"
  */
 static const char worddelimiters[] = " ";
+static const unsigned int border_width = 1;

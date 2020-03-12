@@ -27,7 +27,7 @@
 #define TEXTW(X)              (drw_fontset_getwidth(drw, (X)) + lrpad)
 
 /* enums */
-enum { SchemeNorm, SchemeSel, SchemeOut, SchemeLast }; /* color schemes */
+enum { SchemeNorm, SchemeNormAlt, SchemeSel, SchemeOut, SchemeLast }; /* color schemes */
 
 struct item {
 	char *text;
@@ -118,14 +118,17 @@ cistrstr(const char *s, const char *sub)
 }
 
 static int
-drawitem(struct item *item, int x, int y, int w)
+drawitem(struct item *item, int x, int y, int w, unsigned long c)
 {
 	if (item == sel)
 		drw_setscheme(drw, scheme[SchemeSel]);
 	else if (item->out)
 		drw_setscheme(drw, scheme[SchemeOut]);
-	else
-		drw_setscheme(drw, scheme[SchemeNorm]);
+	else {
+
+        if ((c % 2)) drw_setscheme(drw, scheme[SchemeNormAlt]);
+        else drw_setscheme(drw, scheme[SchemeNorm]);
+    }
 
 	return drw_text(drw, x, y, w, bh, lrpad / 2, item->text, 0);
 }
@@ -156,9 +159,11 @@ drawmenu(void)
 	}
 
 	if (lines > 0) {
+        unsigned long item_counter = 0;
+
 		/* draw vertical list */
 		for (item = curr; item != next; item = item->right)
-			drawitem(item, x, y += bh, mw - x);
+			drawitem(item, x, y += bh, mw - x, item_counter++);
 	} else if (matches) {
 		/* draw horizontal list */
 		x += inputw;
@@ -169,7 +174,7 @@ drawmenu(void)
 		}
 		x += w;
 		for (item = curr; item != next; item = item->right)
-			x = drawitem(item, x, 0, MIN(TEXTW(item->text), mw - x - TEXTW(">")));
+			x = drawitem(item, x, 0, MIN(TEXTW(item->text), mw - x - TEXTW(">")), 0u);
 		if (next) {
 			w = TEXTW(">");
 			drw_setscheme(drw, scheme[SchemeNorm]);
@@ -809,9 +814,10 @@ setup(void)
 		VisibilityChangeMask | PointerMotionMask |
 		ButtonPressMask;
 
-	win = XCreateWindow(dpy, parentwin, x, y, mw, mh, 0,
+	win = XCreateWindow(dpy, parentwin, x, y, mw, mh, border_width,
 	                    CopyFromParent, CopyFromParent, CopyFromParent,
 	                    CWOverrideRedirect | CWBackPixel | CWEventMask , &swa);
+	XSetWindowBorder(dpy, win, scheme[SchemeSel][ColBg].pixel);
 	XSetClassHint(dpy, win, &ch);
 
 
