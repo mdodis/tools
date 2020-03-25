@@ -8,6 +8,8 @@ OBJ = ${SRC:.c=.o}
 
 all: options dwm
 
+DEBUG_BUILD = -g -ggdb3 -O0 -fno-omit-frame-pointer
+
 options:
 	@echo dwm build options:
 	@echo "CFLAGS   = ${CFLAGS}"
